@@ -1,0 +1,15 @@
+{
+  "name": "tarea-1_calculadora",
+  "version": "1.0.0",
+  "description": "Calculadora-Mi-Primer-API-REST",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon index.js"
+  },
+  "author": "Eudaldo Trasviña",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
