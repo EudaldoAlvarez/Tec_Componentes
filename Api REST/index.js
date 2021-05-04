@@ -17,5 +17,4 @@ app.use("/usuarios",User.api);
 app.listen(4000,()=>{
     console.clear();
     console.log("Servidor conrriendo en el puerto 4000");
-    console.log(process.env);
 });
