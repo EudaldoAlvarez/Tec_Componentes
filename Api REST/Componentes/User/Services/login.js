@@ -1,13 +1,12 @@
 const Dal = require("../UserDal");
-const {verifyPassword} = require("../../../libs/utils");
+const {verifyPassword,generateJwt} = require("../../../libs/utils");
 
 const login = async (email, password) => {
 	let response = {};
 	let status = 500;
 	let users;
 	try {
-		users = await Dal.query("SELECT * FROM Users WHERE email=?", [email]);
-		console.log(users);
+		users = await Dal.query("SELECT password FROM usuarios WHERE email=?", [email]);
 	} catch(error){
 		response = {
 			message: "Ha ocurrido un error al iniciar sesión",
@@ -20,24 +19,30 @@ const login = async (email, password) => {
 		};
 	}
 	if (users?.length) {
+		let contraseñaEncryotada = String(users[0]['password']);
 		// Comprobacion de la contraseña
-		if(verifyPassword(password,users['password'])){
+		if(verifyPassword(password,contraseñaEncryotada)){
 			status = 200;
 			response ={
 				message: "Inicio de sesion exitoso.",
 				data: {
-					id: result.insertId,
 					email: email,
 					token: generateJwt({
-					  id: result.insertId,
+					  id: users[0]['id'],
 					  email: email,
 					}),
 				},
 			};
+		}else{
+			response = {
+				message: "contraseña incorrecta.",
+				data: null
+			};
+			status = 400;
 		}
 	} else {
 		response = {
-			message: "Usuario o contraseña incorrecta.",
+			message: "No se encontró el email.",
 			data: null
 		};
 		status = 400;

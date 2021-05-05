@@ -26,11 +26,5 @@
    res.status(status).json(response);
  });
 
- User.post("/pruebas",()=>{
-  let usuarios = {
-    contraseña: holi,
-  }
-  console.log(usuarios['contraseña']);
- });
  module.exports = User;
  

@@ -17,7 +17,8 @@
     * @param {string} password Contraseña sin encriptar
     * @param {string} encryptedPassword Contraseña encriptada
     */
-   verifyPassword: (password, encryptedPassword) => bcrypt.compareSync(password, encryptedPassword),
+   verifyPassword: (password, encryptedPassword) => 
+      bcrypt.compareSync(password, encryptedPassword),
    /**
     * Genera un nuevo JWT
     * @param {object} data

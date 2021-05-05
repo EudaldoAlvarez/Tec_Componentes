@@ -14,7 +14,7 @@ const signUp = async (email, password) => {
 
   // buscar por usuarios duplicados
   try {
-    duplicateUsers = await Dal.query("SELECT email FROM Users WHERE email=?", [
+    duplicateUsers = await Dal.query("SELECT email FROM usuarios WHERE email=?", [
       email,
     ]);
   } catch (error) {
