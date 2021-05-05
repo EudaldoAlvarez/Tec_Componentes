@@ -33,7 +33,7 @@ const signUp = async (email, password) => {
   if (duplicateUsers?.length === 0) {
     try {
       const result = await Dal.query(
-        "INSERT INTO Users (email, password) VALUES (?, ?)",
+        "INSERT INTO usuarios (email, password) VALUES (?, ?)",
         [email, hashPassword(password)]
       );
       response = {
@@ -49,6 +49,7 @@ const signUp = async (email, password) => {
       };
       status = 200;
     } catch (error) {
+      console.log(error);
       response = {
         message: error.message,
         data: null,
@@ -67,6 +68,9 @@ const signUp = async (email, password) => {
     status,
     response,
   };
+
+  //Buscar que usuario y contraseña coincidan
+  
 };
 
 module.exports = signUp;
