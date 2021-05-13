@@ -19,9 +19,9 @@ const login = async (email, password) => {
 		};
 	}
 	if (users?.length) {
-		let contraseñaEncryotada = String(users[0]['password']);
+		let contraseñaEncryptada = String(users[0]['password']);
 		// Comprobacion de la contraseña
-		if(verifyPassword(password,contraseñaEncryotada)){
+		if(verifyPassword(password,contraseñaEncryptada)){
 			status = 200;
 			response ={
 				message: "Inicio de sesion exitoso.",

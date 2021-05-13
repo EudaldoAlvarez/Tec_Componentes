@@ -19,7 +19,9 @@
    const { status, response } = await Services.signUp(email, password);
    res.status(status).json(response);
  });
- 
+  /**
+   * Ruta para logear un usuario
+   */
  User.post("/login",async(req,res)=>{
    let{ email, password } = req.body;
    const { status, response } = await Services.login(email, password);

@@ -26,5 +26,7 @@
     */
    generateJwt: (data) =>
      jwt.sign(data, process.env.JWT_PASSWORD, { expiresIn: "7d" }),
+
+    VerifyJwt: (token) => jwt.verify(token,process.env.JWT_PASSWORD)
  };
  module.exports = utils;
