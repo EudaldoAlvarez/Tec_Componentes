@@ -1,0 +1,29 @@
+.Boton {
+    background: #3f3f3f;
+    display: flex;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    width: 25%;
+    font-size: 24px;
+    
+    color: rgba(255, 254, 254, 0.877);
+    height: 20%;
+    min-width: 25%;
+}
+
+.Boton[data-height="2"] {
+    height: 40%;
+}
+.Boton[data-width="2"]{
+    width: 50%;
+}
+.Boton[data-value="null"] {
+    pointer-events: none;
+}
+
+.Boton:hover {
+    background: #272727;
+    cursor: default;
+}
