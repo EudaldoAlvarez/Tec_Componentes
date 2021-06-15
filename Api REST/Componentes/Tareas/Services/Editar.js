@@ -1,17 +1,18 @@
 const Dal = require("../TareasDal");
 
 
-const Editar =async(id,titulo,descripcion,fecha_inicio,fecha_fin) =>{
-    let response ={};
+const Editar = async (id, email, titulo, descripcion, fecha_inicio, fecha_fin) => {
+    let response = {};
     let status = 500;
     let tarea;
 
     try {
-        await Dal.query("UPDATE tareas SET titulo = ?, descripcion = ?, fecha_inicio = ? , fecha_fin = ? WHERE tareas.id = ?",[titulo,descripcion,fecha_inicio,fecha_fin,id]);
-        tarea = await Dal.query("SELECT * FROM tareas WHERE id=?",[id]);
+        await Dal.query("UPDATE tareas SET titulo = ?, descripcion = ?, fecha_inicio = ? , fecha_fin = ? WHERE tareas.id = ? AND email=?", [titulo, descripcion, fecha_inicio, fecha_fin, id, email])
+        tarea = await Dal.query("SELECT * FROM tareas WHERE id=? and email=?", [id, email]);
+
     } catch (error) {
         response = {
-            message : "Ha ocurrido un error al realizar la consulta.",
+            message: "Ha ocurrido un error con el servidor. Compruebe la conexion a la base de datos.",
             data: error
         };
         status = 500;
@@ -20,10 +21,10 @@ const Editar =async(id,titulo,descripcion,fecha_inicio,fecha_fin) =>{
             response
         }
     }
-    
-    if(tarea?.length){
+
+    if (tarea?.length) {
         status = 200;
-       response = {
+        response = {
             message: "Actualización con exito",
             data: tarea
         };
@@ -31,10 +32,11 @@ const Editar =async(id,titulo,descripcion,fecha_inicio,fecha_fin) =>{
             status,
             response
         }
-    }else{
+    } else {
+        status = 400;
         response = {
-            message: "No se encontro ninguna tarea",
-            data : tarea
+            message: "Error al actualizar, Compruebe la informacion enviada.",
+            data: tarea
         };
 
         return {
