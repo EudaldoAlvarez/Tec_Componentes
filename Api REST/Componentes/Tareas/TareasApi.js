@@ -15,7 +15,6 @@ Tareas.use(cors());
  * Ruta para consultar tareas del usuario
  */
 Tareas.get("/Consultar", Middleware, async (req, res) => {
-    let { email } = req.body;
     const { status, response } = await Services.consultar(req.jwtData.email);
     res.status(status).json(response);
 });
@@ -33,7 +32,7 @@ Tareas.put("/Editar", Middleware,async (req, res) => {
 * Ruta para crear tarea del usuario
 */
 Tareas.post("/Crear",Middleware, async (req, res) => {
-    let { email, titulo, descripcion, fecha_inicio, fecha_fin } = req.body;
+    let {titulo, descripcion, fecha_inicio, fecha_fin } = req.body;
     const { status, response } = await Services.Crear(req.jwtData.email, titulo, descripcion, fecha_inicio, fecha_fin);
     res.status(status).json(response);
 });

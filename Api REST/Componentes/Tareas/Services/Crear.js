@@ -11,28 +11,25 @@ const crear = async (email, titulo, descripcion, fecha_inicio, fecha_fin) => {
                 message: "Se ha creado la tarea correctamente."
             }
         };
-        return {
-            status,
-            response
-        }
     } catch (error) {
-        response = {
-            message: "Ha ocurrido un error con el servidor. Compruebe la conexion a la base de datos.",
-            data: error
-        };
-        status = 500;
+        // Se valida que los datos necesarios existen.
         if (titulo == undefined || descripcion == undefined || descripcion == undefined || fecha_inicio == undefined || fecha_fin == undefined) {
             status = 400;
             response = {
                 message: "No se pudo crear la tarea, Verifique los datos enviados.",
                 data: error
             };
+        } else {
+            // Si los datos existen pero no funciona Probablemente sea error de la conexion a la base de datos.
+            response = {
+                message: "Ha ocurrido un error con el servidor. Compruebe la conexion a la base de datos.",
+                data: error
+            };
         }
-
-        return {
-            status,
-            response
-        }
+    }
+    return {
+        status,
+        response
     }
 };
 
