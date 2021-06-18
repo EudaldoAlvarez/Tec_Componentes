@@ -40,7 +40,7 @@ Tareas.post("/Crear",Middleware, async (req, res) => {
 /**
  * Ruta para borrar una tarea
  */
- Tareas.delete("/Borrar", Middleware, async (req, res) => {
+ Tareas.put("/Borrar", Middleware, async (req, res) => {
     let { id } = req.body;
     const { status, response } = await Services.Borrar(req.jwtData.email,id);
     res.status(status).json(response);

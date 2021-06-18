@@ -27,7 +27,6 @@ const Editar = async (id, email, titulo, descripcion, fecha_inicio, fecha_fin) =
                 message: "Ha ocurrido un error con el servidor. Compruebe la conexion a la base de datos.",
                 data: error
             };
-            status = 500;
         }
     }
     return {
